@@ -13,7 +13,11 @@ module.exports = {
       exposes: {
         './productsIndex': './src/index',
       },
-      shared: ['faker'],
+      shared: {
+        faker: {
+          singleton: true, //to load only one copy of module throughout the apps. throws error if we try to load different incompatible version in different app.
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
